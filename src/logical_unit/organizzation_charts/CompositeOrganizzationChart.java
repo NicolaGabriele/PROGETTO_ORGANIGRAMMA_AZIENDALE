@@ -10,7 +10,6 @@ import java.util.Collection;
 public class CompositeOrganizzationChart implements OrganizzationChart{
 
     private String name, description;
-    private DBMSPersistence persistence;
     @Override
     public boolean add(OrganizzationChart organizzationChart) {
         return false;
