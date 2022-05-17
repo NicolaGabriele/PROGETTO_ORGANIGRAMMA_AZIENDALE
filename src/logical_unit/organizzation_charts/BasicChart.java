@@ -1,7 +1,7 @@
 package logical_unit.organizzation_charts;
 
 import logical_unit.users.User;
-import persistence.DBMSPersistence;
+import persistence.Persistence;
 
 import java.util.Collection;
 
@@ -9,7 +9,7 @@ import java.util.Collection;
 public class BasicChart implements OrganizzationChart {
 
     private String name, description;
-    private DBMSPersistence persistence;
+    private Persistence persistence;
 
     public BasicChart(String name){
         if(name == null)

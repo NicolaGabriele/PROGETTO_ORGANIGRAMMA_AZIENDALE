@@ -1,15 +1,16 @@
 package logical_unit.organizzation_charts;
 
 import logical_unit.users.User;
-import persistence.DBMSPersistence;
 
 import java.util.Collection;
+import java.util.TreeSet;
 
 
 //TODO
 public class CompositeOrganizzationChart implements OrganizzationChart{
 
     private String name, description;
+    private TreeSet<OrganizzationChart> children;
     @Override
     public boolean add(OrganizzationChart organizzationChart) {
         return false;
