@@ -2,6 +2,7 @@ package logical_unit.organizzation_charts;
 
 import logical_unit.users.User;
 import java.io.Serializable;
+import java.util.Collection;
 
 public interface OrganizzationChart extends Serializable {
 
@@ -37,14 +38,14 @@ public interface OrganizzationChart extends Serializable {
      * @param role ruolo per cui verificare la compatibilità
      * @return vero se il ruolo è compatibile con l'organo, falso altrimenti
      */
-    boolean isSupported(String role);
+    boolean isSupported(Role role);
 
 
     /**
      *
      * @param role: ruolo da aggiungere
      */
-    void addRole(String role);
+    void addRole(Role role);
 
 
 
@@ -52,7 +53,7 @@ public interface OrganizzationChart extends Serializable {
      *
      * @param role ruolo da rimuovere
      */
-    void removeRole(String role);
+    void removeRole(Role role);
 
 
 
@@ -80,5 +81,10 @@ public interface OrganizzationChart extends Serializable {
     boolean isMember(User member);
 
 
+    /**
+     *
+     * @return ritorna i figli
+     */
+    Collection<OrganizzationChart> getChildren();
 
 }//OrganizzationChart
