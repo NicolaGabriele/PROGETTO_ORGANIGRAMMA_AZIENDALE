@@ -2,6 +2,7 @@ package logical_unit.organizzation_charts;
 
 import logical_unit.users.User;
 import java.io.Serializable;
+import java.lang.reflect.Member;
 import java.util.Collection;
 
 public interface OrganizzationChart extends Serializable {
@@ -61,7 +62,7 @@ public interface OrganizzationChart extends Serializable {
      *
      * @param member membro da aggiungere
      */
-    void addMember(User member);
+    void addMember(User member,Role role);
 
 
 
@@ -87,4 +88,23 @@ public interface OrganizzationChart extends Serializable {
      */
     Collection<OrganizzationChart> getChildren();
 
+
+
+    /**
+     *
+     * @return collezione di dipendenti dell'organizzazione
+     */
+    Collection<User> getEmployees();
+
+
+    /**
+     *
+     * @return ruoli supportati
+     */
+    Collection<Role> getSupportedRoles();
+
+    /**
+     * @return il nome dell'organizzazione
+     */
+    String getName();
 }//OrganizzationChart

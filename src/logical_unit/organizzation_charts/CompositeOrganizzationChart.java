@@ -1,63 +1,41 @@
 package logical_unit.organizzation_charts;
 
+import logical_unit.users.Employee;
 import logical_unit.users.User;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.TreeSet;
 
 
-//TODO
-public class CompositeOrganizzationChart implements OrganizzationChart{
+public class CompositeOrganizzationChart extends AbstractOrganizzationChart{
 
-    private String name, description;
+
     private TreeSet<OrganizzationChart> children;
+
+    public CompositeOrganizzationChart(String name){
+        super(name);
+        this.children = new TreeSet<OrganizzationChart>();
+    }
+
     @Override
     public boolean add(OrganizzationChart organizzationChart) {
-        return false;
-    }
+        return children.add(organizzationChart);
+    }//add
 
     @Override
     public boolean remove(OrganizzationChart organizzationChart) {
-        return false;
-    }
+        return children.add(organizzationChart);
+    }//remove
 
     @Override
     public boolean contain(OrganizzationChart organizzationChart) {
         return false;
-    }
-
-    @Override
-    public boolean isSupported(Role role) {
-        return false;
-    }
-
-    @Override
-    public void addRole(Role role) {
-
-    }
-
-    @Override
-    public void removeRole(Role role) {
-
-    }
-
-    @Override
-    public void addMember(User member) {
-
-    }
-
-    @Override
-    public void removeMember(User member) {
-
-    }
-
-    @Override
-    public boolean isMember(User member) {
-        return false;
-    }
+    }//contain
 
     @Override
     public Collection<OrganizzationChart> getChildren() {
-        return null;
-    }
-}
+        return Collections.unmodifiableCollection(children);
+    }//getChildren
+
+}//CompositeOrganizzationChart

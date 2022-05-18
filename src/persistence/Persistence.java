@@ -1,9 +1,14 @@
 package persistence;
 
-import java.io.Serializable;
+import logical_unit.organizzation_charts.OrganizzationChart;
+
+import java.io.File;
+
 
 public interface Persistence{
 
-    void save(Serializable element);
+    String orgChartDyrectory = "./organizzationChart";
+    void save(OrganizzationChart element);
+    OrganizzationChart read(File f);
 
 }//Persistence

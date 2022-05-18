@@ -1,6 +1,8 @@
 package logical_unit.organizzation_charts;
 
-public class Role implements Comparable<Role>{
+import java.io.Serializable;
+
+public class Role implements Comparable<Role>, Serializable {
 
     private String name;
     private int priority;
@@ -20,6 +22,14 @@ public class Role implements Comparable<Role>{
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == null || !(o instanceof Role))
+            return false;
+        if( o == this)return true;
+        return ((Role)o).getName().equals(name);
     }
 
     @Override
