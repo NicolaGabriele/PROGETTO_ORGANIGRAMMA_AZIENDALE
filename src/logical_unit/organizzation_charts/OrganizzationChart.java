@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.lang.reflect.Member;
 import java.util.Collection;
 
-public interface OrganizzationChart extends Serializable {
+public interface OrganizzationChart extends Serializable,Comparable<OrganizzationChart> {
 
 
 

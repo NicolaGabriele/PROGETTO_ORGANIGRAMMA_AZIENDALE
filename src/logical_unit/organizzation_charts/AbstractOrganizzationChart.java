@@ -97,4 +97,9 @@ public abstract class AbstractOrganizzationChart implements OrganizzationChart{
     public String toString(){
         return "OrganizzationChart{ "+name+" }";
     }//toString
+
+    @Override
+    public int compareTo(OrganizzationChart o) {
+        return getName().compareTo(o.getName());
+    }
 }//AbstractOrganizzationChart

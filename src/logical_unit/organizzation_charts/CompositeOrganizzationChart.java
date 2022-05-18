@@ -1,8 +1,5 @@
 package logical_unit.organizzation_charts;
 
-import logical_unit.users.Employee;
-import logical_unit.users.User;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
