@@ -1,4 +1,4 @@
-package presentation.view;
+package presentation.chart_rappresentation;
 
 import logical_unit.organizzation_charts.OrganizzationChart;
 

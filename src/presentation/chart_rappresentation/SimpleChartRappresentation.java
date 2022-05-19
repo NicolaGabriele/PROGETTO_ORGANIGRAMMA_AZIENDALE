@@ -1,14 +1,15 @@
-package presentation.view;
+package presentation.chart_rappresentation;
 
 import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.OrganizzationChart;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.awt.event.MouseEvent;;
+import java.awt.event.MouseMotionListener;
 
-public class SimpleChartRappresentation extends Rappresentation {
+
+public class SimpleChartRappresentation extends Rappresentation implements MouseMotionListener{
 
     private int height,width;
 
@@ -18,6 +19,7 @@ public class SimpleChartRappresentation extends Rappresentation {
         height = 50;
         width = 200;
         setPreferredSize(new Dimension(width+10,height+10));
+        addMouseMotionListener(this);
     }
 
     @Override
@@ -28,12 +30,6 @@ public class SimpleChartRappresentation extends Rappresentation {
         g2d.setStroke(new BasicStroke(2));
         g2d.drawRect(1,0,width,height);
         g2d.drawString(subject.getName(),2,15);
-        Collection<OrganizzationChart> coll = subject.getChildren();
-        if(coll == null || coll.size() == 0)return;
-        LinkedList<OrganizzationChart> stack = new LinkedList<>();
-        for(OrganizzationChart o: coll)
-            stack.addLast(o);
-
     }
 
 
@@ -41,15 +37,27 @@ public class SimpleChartRappresentation extends Rappresentation {
     //test
     public static void main(String...args){
         JFrame f = new JFrame();
-        JPanel p = new JPanel();
         OrganizzationChart c = new BasicOrganizzationChart("direzione");
-        f.setSize(500,500);
         SimpleChartRappresentation s = new SimpleChartRappresentation(c);
+        RappresentationPanel p = new RappresentationPanel();
+        f.setSize(500,500);
         p.add(s);
         f.add(p);
         p.setBackground(Color.white);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        Point p = getParent().getMousePosition();
+        if(p != null)
+            setLocation(p);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
 
     }
 }//SimpleChartRappresentation
