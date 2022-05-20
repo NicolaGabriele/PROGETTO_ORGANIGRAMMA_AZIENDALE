@@ -18,6 +18,14 @@ public class RappresentationPanel extends JPanel{
         addMouseListener(new RappresentationPaneMouseListener(this));
     }
 
+
+    @Override
+    public void paintComponent(Graphics g){
+        for(Component c: getComponents())
+            if(c instanceof Rappresentation && ((Rappresentation)c).getPosition() != null)
+                c.setLocation(((Rappresentation)c).getPosition());
+        super.paintComponent(g);
+    }
     public void showMenu(){
         Point p = getMousePosition();
         if(p != null)

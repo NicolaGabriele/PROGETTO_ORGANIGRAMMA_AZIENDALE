@@ -1,7 +1,10 @@
 package presentation.chart_rappresentation;
 
+import logical_unit.commands.AddEmployess;
 import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.OrganizzationChart;
+import presentation.listeners.SimpleRappresentationMouseListener;
+import presentation.others_graphic_component.MyMenuItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,14 +15,25 @@ import java.awt.event.MouseMotionListener;
 public class SimpleChartRappresentation extends Rappresentation implements MouseMotionListener{
 
     private int height,width;
-
     private static final int maxCaratteri = 22;
+    private JPopupMenu popupMenu;
     public SimpleChartRappresentation(OrganizzationChart subject){
         super(subject);
         height = 50;
         width = 200;
         setPreferredSize(new Dimension(width+10,height+10));
         addMouseMotionListener(this);
+        configPopUp();
+    }
+
+    private void configPopUp(){
+        add(popupMenu = new JPopupMenu());
+        addMouseListener(new SimpleRappresentationMouseListener(this));
+        popupMenu.add(new MyMenuItem("nuovo dipendente",new AddEmployess(subject)));
+    }
+
+    public void showMenu(){
+        popupMenu.show(this,getMousePosition().x,getMousePosition().y);
     }
 
     @Override
@@ -34,26 +48,13 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
 
 
 
-    //test
-    public static void main(String...args){
-        JFrame f = new JFrame();
-        OrganizzationChart c = new BasicOrganizzationChart("direzione");
-        SimpleChartRappresentation s = new SimpleChartRappresentation(c);
-        RappresentationPanel p = new RappresentationPanel();
-        f.setSize(500,500);
-        p.add(s);
-        f.add(p);
-        p.setBackground(Color.white);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    }
-
     @Override
     public void mouseDragged(MouseEvent e) {
         Point p = getParent().getMousePosition();
-        if(p != null)
+        if(p != null) {
             setLocation(p);
+            setPosition(p);
+        }
     }
 
     @Override

@@ -10,6 +10,8 @@ public class Employee implements User{
         ID++;
         if(name == null || surname == null)
             throw new IllegalArgumentException("nome e cognome sono obbligatori");
+        this.name = name;
+        this.surname = surname;
         //default values
         city = "";
         cap = "";
@@ -68,6 +70,12 @@ public class Employee implements User{
         this.street = street;
     }
 
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        return sb.append("      ").append(id).append("      ").append(name)
+                .append("       ").append(surname).toString();
+    }
 
     public static class Builder{
 

@@ -39,4 +39,7 @@ public class Role implements Comparable<Role>, Serializable {
                 (priority<comp)?-1:0;
     }
 
+    public String toString(){
+        return name;
+    }
 }
