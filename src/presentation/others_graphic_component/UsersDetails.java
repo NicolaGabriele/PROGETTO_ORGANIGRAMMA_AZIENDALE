@@ -4,6 +4,7 @@ import logical_unit.organizzation_charts.OrganizzationChart;
 import logical_unit.organizzation_charts.Role;
 import logical_unit.users.Employee;
 import logical_unit.users.User;
+import presentation.MainFrame;
 
 import javax.swing.*;
 
@@ -13,7 +14,11 @@ import java.util.List;
 
 public class UsersDetails extends JPanel {
 
+    private MainFrame p;
     private static final int DEFAULT_SIZE = 10;
+    public UsersDetails(MainFrame p){
+        this.p = p;
+    }
     public void config(Map<User, Role> users){
         if(users ==null)
             throw new IllegalArgumentException();
@@ -27,6 +32,7 @@ public class UsersDetails extends JPanel {
         }
         JList<Record> lista = new JList<Record>(us);
         add(new JScrollPane(lista));
+        p.show("users details");
     }
 
 

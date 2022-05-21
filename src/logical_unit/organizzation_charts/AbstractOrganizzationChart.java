@@ -66,8 +66,8 @@ public abstract class AbstractOrganizzationChart implements OrganizzationChart{
     public abstract Collection<OrganizzationChart> getChildren();
 
     @Override
-    public Collection<User> getEmployees() {
-        return Collections.unmodifiableCollection(this.employees.keySet());
+    public Map<User, Role> getEmployees() {
+        return Collections.unmodifiableMap(this.employees);
     }//getEmployees
 
     @Override

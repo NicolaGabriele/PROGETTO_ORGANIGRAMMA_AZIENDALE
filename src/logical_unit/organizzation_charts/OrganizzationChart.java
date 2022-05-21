@@ -4,6 +4,7 @@ import logical_unit.users.User;
 import java.io.Serializable;
 import java.lang.reflect.Member;
 import java.util.Collection;
+import java.util.Map;
 
 public interface OrganizzationChart extends Serializable,Comparable<OrganizzationChart> {
 
@@ -94,7 +95,7 @@ public interface OrganizzationChart extends Serializable,Comparable<Organizzatio
      *
      * @return collezione di dipendenti dell'organizzazione
      */
-    Collection<User> getEmployees();
+    Map<User,Role> getEmployees();
 
 
     /**

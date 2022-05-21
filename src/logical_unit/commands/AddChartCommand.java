@@ -2,6 +2,7 @@ package logical_unit.commands;
 
 import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.CompositeOrganizzationChart;
+import presentation.MainFrame;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.chart_rappresentation.SimpleChartRappresentation;
 import presentation.others_graphic_component.ChartTypeSelector;
@@ -25,7 +26,7 @@ public class AddChartCommand implements Command{
             target.add(new SimpleChartRappresentation(
                     (selection == ChartTypeSelector.Type.COMPOSITE)?
                             new CompositeOrganizzationChart(s):
-                            new BasicOrganizzationChart(s)
+                            new BasicOrganizzationChart(s),target.getUsersDetailsPane()
             ));
         }
 

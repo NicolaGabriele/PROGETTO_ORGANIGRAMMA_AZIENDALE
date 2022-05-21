@@ -1,10 +1,11 @@
 package presentation.chart_rappresentation;
 
 import logical_unit.commands.AddEmployess;
-import logical_unit.organizzation_charts.BasicOrganizzationChart;
+import logical_unit.commands.ViewUsersDetails;
 import logical_unit.organizzation_charts.OrganizzationChart;
 import presentation.listeners.SimpleRappresentationMouseListener;
 import presentation.others_graphic_component.MyMenuItem;
+import presentation.others_graphic_component.UsersDetails;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,12 +18,14 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
     private int height,width;
     private static final int maxCaratteri = 22;
     private JPopupMenu popupMenu;
-    public SimpleChartRappresentation(OrganizzationChart subject){
+    private UsersDetails details;
+    public SimpleChartRappresentation(OrganizzationChart subject, UsersDetails details){
         super(subject);
         height = 50;
         width = 200;
         setPreferredSize(new Dimension(width+10,height+10));
         addMouseMotionListener(this);
+        this.details = details;
         configPopUp();
     }
 
@@ -30,6 +33,7 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         add(popupMenu = new JPopupMenu());
         addMouseListener(new SimpleRappresentationMouseListener(this));
         popupMenu.add(new MyMenuItem("nuovo dipendente",new AddEmployess(subject)));
+        popupMenu.add(new MyMenuItem("dettagli dipendenti",new ViewUsersDetails(subject, details)));
     }
 
     public void showMenu(){

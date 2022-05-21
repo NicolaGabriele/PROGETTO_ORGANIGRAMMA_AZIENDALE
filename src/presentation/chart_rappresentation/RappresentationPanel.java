@@ -3,6 +3,7 @@ package presentation.chart_rappresentation;
 import logical_unit.commands.AddChartCommand;
 import presentation.listeners.RappresentationPaneMouseListener;
 import presentation.others_graphic_component.MyMenuItem;
+import presentation.others_graphic_component.UsersDetails;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +11,13 @@ import java.awt.*;
 public class RappresentationPanel extends JPanel{
 
     private JPopupMenu menu;
-
-    public RappresentationPanel(){
+    private UsersDetails p;
+    public RappresentationPanel(UsersDetails p){
         setBackground(Color.WHITE);
         add( menu = new JPopupMenu());
         menu.add(new MyMenuItem("add",new AddChartCommand(this)));
         addMouseListener(new RappresentationPaneMouseListener(this));
+        this.p = p;
     }
 
 
@@ -30,6 +32,10 @@ public class RappresentationPanel extends JPanel{
         Point p = getMousePosition();
         if(p != null)
             menu.show(this,(int)p.getX(),(int)p.getY());
+    }
+
+    public UsersDetails getUsersDetailsPane(){
+        return p;
     }
 
 }//Rappresentation
