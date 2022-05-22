@@ -45,7 +45,6 @@ public class ChartTypeSelector extends JFrame implements ActionListener {
         panel4.add(button = new JButton("SUBMIT"),BorderLayout.WEST);
         panel2.add(panel4);
         selection = null;
-        addWindowListener(new MyListener());
         button.addActionListener(this);
         button.setSize(new Dimension(100,30));
         Point p = parent.getLocation();
@@ -74,43 +73,5 @@ public class ChartTypeSelector extends JFrame implements ActionListener {
     }
 
 
-    private class MyListener implements WindowListener{
 
-        @Override
-        public void windowOpened(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowClosing(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowClosed(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowIconified(WindowEvent e) {
-        }
-
-        @Override
-        public void windowDeiconified(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowActivated(WindowEvent e) {
-
-        }
-
-        @Override
-        public void windowDeactivated(WindowEvent e) {
-            //default value
-            if(selection == null)
-                selection = Type.COMPOSITE;
-            System.out.println(selection);
-        }
-    }
 }//ChartTypeSelector

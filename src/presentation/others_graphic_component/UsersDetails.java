@@ -15,7 +15,7 @@ import java.util.List;
 public class UsersDetails extends JPanel {
 
     private MainFrame p;
-    private static final int DEFAULT_SIZE = 10;
+    private JButton back;
     public UsersDetails(MainFrame p){
         this.p = p;
     }
@@ -23,7 +23,15 @@ public class UsersDetails extends JPanel {
         if(users ==null)
             throw new IllegalArgumentException();
         setLayout(new BorderLayout());
-        add(new JLabel(" id    nome    cognome    ruolo"),BorderLayout.NORTH);
+        JPanel pan = new JPanel();
+        pan.setLayout(new GridLayout(2,1));
+        add(pan,BorderLayout.NORTH);
+        JPanel panButton = new JPanel();
+        panButton.setLayout(new BorderLayout());
+        panButton.add(back = new JButton("<-"), BorderLayout.WEST);
+        pan.add(panButton);
+        pan.add(new JLabel(" nome     priorita"),BorderLayout.NORTH);
+        back.addActionListener((e)->{p.show("pannello tabs");});
         Record[] us = new Record[users.size()+1];
         int i = 0;
         for(User u: users.keySet()){

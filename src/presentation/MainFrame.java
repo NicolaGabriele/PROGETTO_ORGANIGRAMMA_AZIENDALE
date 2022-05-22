@@ -5,12 +5,13 @@ import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.Role;
 import logical_unit.users.User;
 import presentation.chart_rappresentation.SimpleChartRappresentation;
+import presentation.others_graphic_component.AddConnectionPanel;
 import presentation.others_graphic_component.MyMenuItem;
+import presentation.others_graphic_component.SupportedRoleView;
 import presentation.others_graphic_component.UsersDetails;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 public class MainFrame extends JFrame {
 
@@ -20,6 +21,8 @@ public class MainFrame extends JFrame {
     private  JTabbedPane tabs;
     private JPanel pannelloPrincipale,pannelloTabs;
     private UsersDetails usersDetails;
+    private SupportedRoleView supportedRoleDetails;
+    private AddConnectionPanel addConnectionPanel;
     private static final Dimension DEFAULT_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
     public MainFrame(){
         super("gestore organigrammi aziendali");
@@ -32,10 +35,13 @@ public class MainFrame extends JFrame {
         setJMenuBar(barraMenu = new JMenuBar());
         barraMenu.add(file = new JMenu("file"));
         barraMenu.add(view = new JMenu("view"));
+        pannelloTabs = new JPanel();
         usersDetails  = new UsersDetails(this);
+        supportedRoleDetails = new SupportedRoleView(this);
+        addConnectionPanel = new AddConnectionPanel(this);
         configLayout();
         pannelloTabsConfig();
-        file.add(new MyMenuItem("new",new CreateNewOrganizzationChartPane(tabs, usersDetails)));
+        file.add(new MyMenuItem("new",new CreateNewOrganizzationChartPane(tabs, usersDetails,supportedRoleDetails,addConnectionPanel)));
         c.show(pannelloPrincipale,"pannello tabs");
         setVisible(true);
     }
@@ -43,16 +49,20 @@ public class MainFrame extends JFrame {
     private void configLayout(){
         pannelloPrincipale = new JPanel();
         pannelloPrincipale.setLayout(c = new CardLayout());
-        pannelloPrincipale.add(pannelloTabs = new JPanel());
+        pannelloPrincipale.add(pannelloTabs);
         pannelloPrincipale.add(usersDetails);
+        pannelloPrincipale.add(supportedRoleDetails);
+        pannelloPrincipale.add(addConnectionPanel);
+        c.addLayoutComponent(pannelloTabs,"pannello tabs");
         c.addLayoutComponent(usersDetails,"users details");
+        c.addLayoutComponent(supportedRoleDetails,"roles details");
+        c.addLayoutComponent(addConnectionPanel,"add connection panel");
         add(pannelloPrincipale);
     }
 
     private void pannelloTabsConfig(){
         pannelloTabs.setLayout(new BorderLayout());
         pannelloTabs.add(tabs = new JTabbedPane());
-        c.addLayoutComponent(pannelloTabs,"pannello tabs");
     }
 
     public void show(String s){

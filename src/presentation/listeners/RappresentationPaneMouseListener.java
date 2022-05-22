@@ -1,7 +1,9 @@
 package presentation.listeners;
 
 import presentation.chart_rappresentation.RappresentationPanel;
+import presentation.others_graphic_component.Line;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,6 +19,7 @@ public class RappresentationPaneMouseListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if(e.getButton() == MouseEvent.BUTTON3)
             target.showMenu();
+
     }
 
     @Override

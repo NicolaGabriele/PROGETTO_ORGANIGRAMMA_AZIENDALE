@@ -9,7 +9,8 @@ import java.io.Serializable;
 public abstract class Rappresentation extends JComponent implements Serializable {
 
     protected OrganizzationChart subject;
-    private Point position;
+    protected Point position;
+
     public Rappresentation(OrganizzationChart subject){
         this.subject = subject;
     }
@@ -20,4 +21,8 @@ public abstract class Rappresentation extends JComponent implements Serializable
     public void setPosition(Point position) {
         this.position = position;
     }
+    public OrganizzationChart getSubject(){
+        return subject;
+    }
+
 }

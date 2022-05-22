@@ -77,6 +77,11 @@ public class Employee implements User{
                 .append("       ").append(surname).toString();
     }
 
+    @Override
+    public int compareTo(User o) {
+        return (o.getID() > id)?-1:(o.getID() < id)?1:0;
+    }
+
     public static class Builder{
 
         Employee result;
