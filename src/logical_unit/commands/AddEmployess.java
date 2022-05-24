@@ -6,9 +6,10 @@ import logical_unit.users.Employee;
 import presentation.others_graphic_component.AddEmployeeFrame;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
-public class AddEmployess implements Command{
+public class AddEmployess implements Command {
 
     private OrganizzationChart o;
     public AddEmployess(OrganizzationChart organizzationChart) {

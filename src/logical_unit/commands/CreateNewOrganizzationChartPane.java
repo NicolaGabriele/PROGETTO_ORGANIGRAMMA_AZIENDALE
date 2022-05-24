@@ -22,6 +22,6 @@ public class CreateNewOrganizzationChartPane implements Command{
     @Override
     public void execute() {
         String name = JOptionPane.showInputDialog(pane.getParent(),"inserisci il nome del file");
-        pane.addTab(name,new JScrollPane(new RappresentationPanel(p,srv,addcp)));
+        pane.addTab(name,new JScrollPane(new RappresentationPanel(p,srv,addcp, name)));
     }
 }//CreateNewOrganizzationChartPane

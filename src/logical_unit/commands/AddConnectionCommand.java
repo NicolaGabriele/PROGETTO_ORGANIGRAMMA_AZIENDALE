@@ -5,6 +5,8 @@ import presentation.chart_rappresentation.Rappresentation;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.others_graphic_component.AddConnectionPanel;
 
+import java.io.Serializable;
+
 public class AddConnectionCommand implements Command{
 
     private  RappresentationPanel target;

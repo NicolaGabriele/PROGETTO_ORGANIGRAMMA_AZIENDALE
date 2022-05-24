@@ -19,21 +19,28 @@ public class RappresentationPanel extends JPanel{
     private SupportedRoleView srv;
     private JPopupMenu menu;
     private UsersDetails p;
-    java.util.List<Connection> connections;
-    public RappresentationPanel(UsersDetails p, SupportedRoleView srv, AddConnectionPanel connectionPanel){
+    private java.util.List<Connection> connections;
+    private AddConnectionPanel connectionPanel;
+    private String fileName;
+    public RappresentationPanel(UsersDetails p, SupportedRoleView srv, AddConnectionPanel connectionPanel,String name){
         setBackground(Color.WHITE);
         add( menu = new JPopupMenu());
-        menu.add(new MyMenuItem("add",new AddChartCommand(this)));
-        menu.add(new MyMenuItem("aggiungi connessione", new AddConnectionCommand(this, connectionPanel)));
-        menu.add(new MyMenuItem("rimuovi connessione", new RemoveConnection(this,connectionPanel)));
         addMouseListener(new RappresentationPaneMouseListener(this));
         setPreferredSize(MainFrame.DEFAULT_SIZE);
         this.p = p;
         this.srv = srv;
         connections = new LinkedList<Connection>();
+        this.connectionPanel = connectionPanel;
+        configPopUp();
+        this.fileName = name;
     }
 
 
+    public void configPopUp(){
+        menu.add(new MyMenuItem("add",new AddChartCommand(this)));
+        menu.add(new MyMenuItem("aggiungi connessione", new AddConnectionCommand(this, connectionPanel)));
+        menu.add(new MyMenuItem("rimuovi connessione", new RemoveConnection(this,connectionPanel)));
+    }
     @Override
     public void paintComponent(Graphics g){
         for(Component c: getComponents())
@@ -44,7 +51,7 @@ public class RappresentationPanel extends JPanel{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(2));
         for(Connection l: connections) {
-            Connection ci = (Connection)l;
+            Connection ci = l;
             g2d.drawLine(ci.getStartX(), ci.getStartY(), ci.getEndX(), ci.getEndY());
         }
     }
@@ -85,4 +92,21 @@ public class RappresentationPanel extends JPanel{
         return count;
     }
 
+    public void removeChart(Rappresentation r){
+        remove(r);
+        Iterator<Connection> it = connections.iterator();
+        while (it.hasNext()){
+            Connection c = it.next();
+            if(c.getHead() == r || c.getTail() == r)
+                it.remove();
+        }
+    }
+
+    public String getFileName(){
+        return fileName;
+    }
+
+    public void setFileName(String s){
+        fileName = s;
+    }
 }//Rappresentation

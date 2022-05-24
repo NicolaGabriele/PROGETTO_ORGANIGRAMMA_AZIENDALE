@@ -1,9 +1,6 @@
 package presentation.chart_rappresentation;
 
-import logical_unit.commands.AddEmployess;
-import logical_unit.commands.AddRole;
-import logical_unit.commands.ViewSupportedRolesCmd;
-import logical_unit.commands.ViewUsersDetails;
+import logical_unit.commands.*;
 import logical_unit.organizzation_charts.OrganizzationChart;
 import presentation.listeners.SimpleRappresentationMouseListener;
 import presentation.others_graphic_component.MyMenuItem;
@@ -42,6 +39,7 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         popupMenu.add(new MyMenuItem("dettagli dipendenti",new ViewUsersDetails(subject, details)));
         popupMenu.add(new MyMenuItem("aggiungi ruolo",new AddRole(subject)));
         popupMenu.add(new MyMenuItem("dettagli ruoli", new ViewSupportedRolesCmd(subject,srv)));
+        popupMenu.add(new MyMenuItem("elimina", new RemoveChart(this)));
     }
 
     public void showMenu(){

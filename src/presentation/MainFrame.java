@@ -1,6 +1,8 @@
 package presentation;
 
 import logical_unit.commands.CreateNewOrganizzationChartPane;
+import logical_unit.commands.Open;
+import logical_unit.commands.Save;
 import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.Role;
 import logical_unit.users.User;
@@ -42,6 +44,8 @@ public class MainFrame extends JFrame {
         configLayout();
         pannelloTabsConfig();
         file.add(new MyMenuItem("new",new CreateNewOrganizzationChartPane(tabs, usersDetails,supportedRoleDetails,addConnectionPanel)));
+        file.add(new MyMenuItem("save",new Save(tabs)));
+        file.add(new MyMenuItem("apri", new Open(tabs)));
         c.show(pannelloPrincipale,"pannello tabs");
         setVisible(true);
     }
