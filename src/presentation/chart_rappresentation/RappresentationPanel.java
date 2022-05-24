@@ -38,6 +38,7 @@ public class RappresentationPanel extends JPanel{
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setStroke(new BasicStroke(2));
         for(Line l: connections)
             g2d.drawLine(l.getStartX(),l.getStartY(),l.getEndX(),l.getEndY());
     }

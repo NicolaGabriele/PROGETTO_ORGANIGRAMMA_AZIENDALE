@@ -53,7 +53,7 @@ public class AddConnectionCommand implements Command{
             Point b = figlio.getPosition();
             Point head = new Point(
                     (int)(a.getX()+padre.getWidth()/2),
-                    (int)(a.getY()+padre.getHeight())
+                    (int)(a.getY()+padre.getHeight()-10)
             );
 
             Point tail = new Point(
@@ -63,7 +63,7 @@ public class AddConnectionCommand implements Command{
 
             padre.getSubject().add(figlio.getSubject());
             panel.getMainFrame().show("pannello tabs");
-            target.addConnection(new Line((int) a.getX(), (int) a.getY(), (int) b.getX(), (int) b.getY()));
+            target.addConnection(new Line((int) head.getX(), (int) head.getY(), (int) tail.getX(), (int) tail.getY()));
             target.repaint();
             System.out.println(padre.getPosition()+"\n"+
                                 "line head: "+a);
