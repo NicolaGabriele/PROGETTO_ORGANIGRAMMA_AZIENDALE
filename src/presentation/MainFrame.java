@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
     private UsersDetails usersDetails;
     private SupportedRoleView supportedRoleDetails;
     private AddConnectionPanel addConnectionPanel;
-    private static final Dimension DEFAULT_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
+    public static final Dimension DEFAULT_SIZE = new Dimension(1080,720);
     public MainFrame(){
         super("gestore organigrammi aziendali");
     }

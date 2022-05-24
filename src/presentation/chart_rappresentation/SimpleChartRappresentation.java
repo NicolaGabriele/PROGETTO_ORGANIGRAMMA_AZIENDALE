@@ -5,6 +5,7 @@ import logical_unit.commands.AddRole;
 import logical_unit.commands.ViewSupportedRolesCmd;
 import logical_unit.commands.ViewUsersDetails;
 import logical_unit.organizzation_charts.OrganizzationChart;
+import presentation.MainFrame;
 import presentation.listeners.SimpleRappresentationMouseListener;
 import presentation.others_graphic_component.Line;
 import presentation.others_graphic_component.MyMenuItem;

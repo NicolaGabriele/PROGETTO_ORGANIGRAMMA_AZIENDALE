@@ -27,7 +27,7 @@ public class AddConnectionCommand implements Command{
     private class Executor extends Thread{
 
         public void run(){
-            panel.config(target, "seleziona l'elemento padre");
+           panel.config(target, "seleziona l'elemento padre");
             Rappresentation padre = panel.getSelection();
             while(padre == null) {
                 try {
@@ -60,13 +60,14 @@ public class AddConnectionCommand implements Command{
                     (int)(b.getX()+figlio.getWidth()/2),
                     (int)b.getY()
             );
-            Line l = new Line(head,tail);
-            target.add(l);
-            l.setLocation(b);
-            target.repaint();
-            target.revalidate();
+
             padre.getSubject().add(figlio.getSubject());
             panel.getMainFrame().show("pannello tabs");
+            target.addConnection(new Line((int) a.getX(), (int) a.getY(), (int) b.getX(), (int) b.getY()));
+            target.repaint();
+            System.out.println(padre.getPosition()+"\n"+
+                                "line head: "+a);
+
         }
     }
 }

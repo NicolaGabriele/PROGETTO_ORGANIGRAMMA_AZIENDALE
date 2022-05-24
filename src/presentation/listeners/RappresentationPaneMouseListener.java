@@ -17,6 +17,7 @@ public class RappresentationPaneMouseListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getPoint());
         if(e.getButton() == MouseEvent.BUTTON3)
             target.showMenu();
 
