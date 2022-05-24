@@ -1,9 +1,7 @@
 package presentation.listeners;
 
 import presentation.chart_rappresentation.SimpleChartRappresentation;
-import presentation.others_graphic_component.Line;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -28,7 +26,6 @@ public class SimpleRappresentationMouseListener implements MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override

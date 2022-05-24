@@ -10,7 +10,7 @@ public abstract class Rappresentation extends JComponent implements Serializable
 
     protected OrganizzationChart subject;
     protected Point position;
-
+    protected boolean movable = true;
     public Rappresentation(OrganizzationChart subject){
         this.subject = subject;
     }
@@ -23,6 +23,10 @@ public abstract class Rappresentation extends JComponent implements Serializable
     }
     public OrganizzationChart getSubject(){
         return subject;
+    }
+
+    public void setMovable(boolean movable){
+        this.movable = movable;
     }
 
 }

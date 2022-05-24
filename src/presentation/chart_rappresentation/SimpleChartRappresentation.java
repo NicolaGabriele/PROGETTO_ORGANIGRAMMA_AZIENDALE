@@ -5,9 +5,7 @@ import logical_unit.commands.AddRole;
 import logical_unit.commands.ViewSupportedRolesCmd;
 import logical_unit.commands.ViewUsersDetails;
 import logical_unit.organizzation_charts.OrganizzationChart;
-import presentation.MainFrame;
 import presentation.listeners.SimpleRappresentationMouseListener;
-import presentation.others_graphic_component.Line;
 import presentation.others_graphic_component.MyMenuItem;
 import presentation.others_graphic_component.SupportedRoleView;
 import presentation.others_graphic_component.UsersDetails;
@@ -65,7 +63,7 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
     @Override
     public void mouseDragged(MouseEvent e) {
             Point p = getParent().getMousePosition();
-            if (p != null) {
+            if (p != null && movable) {
                 setLocation(p);
                 setPosition(p);
             }
