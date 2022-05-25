@@ -82,6 +82,8 @@ public class RappresentationPanel extends JPanel{
             }
         if(target != null)
             connections.remove(target);
+
+
     }
 
     public int numberOfConnections(Rappresentation r){
@@ -108,5 +110,9 @@ public class RappresentationPanel extends JPanel{
 
     public void setFileName(String s){
         fileName = s;
+    }
+
+    public java.util.List<Connection> getConnections(){
+        return connections;
     }
 }//Rappresentation

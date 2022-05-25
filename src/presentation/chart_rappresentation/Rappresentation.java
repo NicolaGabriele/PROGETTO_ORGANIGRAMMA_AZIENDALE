@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
 
-public abstract class Rappresentation extends JComponent implements Serializable {
+public abstract class Rappresentation extends JComponent  {
 
     protected OrganizzationChart subject;
     protected Point position;

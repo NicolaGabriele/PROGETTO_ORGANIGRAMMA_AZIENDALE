@@ -1,16 +1,15 @@
 package persistence;
 
-import logical_unit.organizzation_charts.OrganizzationChart;
 import presentation.chart_rappresentation.RappresentationPanel;
 
-import javax.swing.*;
 import java.io.File;
+import java.util.List;
 
 
 public interface Persistence{
 
     String orgChartDyrectory = "./organizzationChart";
-    void save(RappresentationPanel element);
-    RappresentationPanel read(File f);
+    void save(RappresentationPanel p);
+    void read(File f, List<Record> rappresentations, List<ConnectionRecord> connections);
 
 }//Persistence

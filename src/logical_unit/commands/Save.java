@@ -16,7 +16,9 @@ public class Save implements Command{
     @Override
     public void execute() {
         JScrollPane scrollPane = (JScrollPane) tab.getSelectedComponent();
-        PersistenceUnit.MANAGER.save((RappresentationPanel) scrollPane.getViewport().getView());
+        RappresentationPanel element = (RappresentationPanel)scrollPane.getViewport().getView();
+        System.out.println(element);
+        PersistenceUnit.MANAGER.save(element);
         JOptionPane.showMessageDialog(null,"salvataggio effettuato");
 
     }

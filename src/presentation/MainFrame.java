@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
         pannelloTabsConfig();
         file.add(new MyMenuItem("new",new CreateNewOrganizzationChartPane(tabs, usersDetails,supportedRoleDetails,addConnectionPanel)));
         file.add(new MyMenuItem("save",new Save(tabs)));
-        file.add(new MyMenuItem("apri", new Open(tabs)));
+        file.add(new MyMenuItem("apri", new Open(this)));
         c.show(pannelloPrincipale,"pannello tabs");
         setVisible(true);
     }
@@ -75,6 +75,18 @@ public class MainFrame extends JFrame {
 
     public UsersDetails getUserDetailsPanel(){
         return (UsersDetails) usersDetails;
+    }
+
+    public JTabbedPane tab(){
+        return tabs;
+    }
+
+    public SupportedRoleView getSupportedRoleDetails(){
+        return supportedRoleDetails;
+    }
+
+    public AddConnectionPanel getAddConnectionPanel(){
+        return addConnectionPanel;
     }
 
 }
