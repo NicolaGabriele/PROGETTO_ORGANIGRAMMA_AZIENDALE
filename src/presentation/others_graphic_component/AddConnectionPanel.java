@@ -14,10 +14,12 @@ public class AddConnectionPanel extends JPanel {
     private JButton submit;
     private MainFrame p;
     private Rappresentation raps;
+    private Font myFont ;
 
     public AddConnectionPanel(MainFrame p) {
         this.p = p;
         raps = null;
+        myFont = new Font("Times Romans",Font.BOLD,17);
     }
 
     public void config(RappresentationPanel pan, String label){
@@ -34,11 +36,31 @@ public class AddConnectionPanel extends JPanel {
             arr[i] = rappresentation;
             i++;
         }
-        add(new JLabel(label),BorderLayout.NORTH);
+        JPanel pannelloNord = new JPanel();
+        pannelloNord.setLayout(new GridLayout(2,1));
+        JButton back = new JButton("<-");
+        back.addActionListener((e)->{
+            p.show("pannello tabs");
+        });
+        JPanel pannelloBottone = new JPanel();
+        pannelloBottone.setLayout(new BorderLayout());
+        pannelloBottone.add(back,BorderLayout.WEST);
+        pannelloNord.add(pannelloBottone);
+        pannelloBottone.setBackground(Color.WHITE);
+        JPanel pannelloLabel = new JPanel();
+        pannelloLabel.setBackground(Color.WHITE);
+        JLabel title = new JLabel(label);
+        title.setFont(myFont);
+        title.setForeground(Color.RED);
+        pannelloLabel.add(title);
+        pannelloNord.add(pannelloLabel);
+        add(pannelloNord,BorderLayout.NORTH);
         JPanel aux = new JPanel();
+        aux.setBackground(Color.WHITE);
         aux.add(submit = new JButton("SUBMIT"));
         add(aux,BorderLayout.SOUTH);
         add(list = new JList<Rappresentation>(arr), BorderLayout.CENTER);
+        list.setFont(myFont);
         submit.addActionListener((e) -> {
             List<Rappresentation> res = list.getSelectedValuesList();
             if(res.size() == 1){
