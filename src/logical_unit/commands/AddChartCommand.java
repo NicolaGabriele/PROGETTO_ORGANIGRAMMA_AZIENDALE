@@ -21,55 +21,41 @@ public class AddChartCommand implements Command{
 
     @Override
     public void execute() {
-        new Excecutor().start();
-    }
 
-    private class Excecutor extends Thread{
+        String s = JOptionPane.showInputDialog(target,"inserisci il nome dell'organo");
+        if(s == null || s.equals("")){
+            JOptionPane.showMessageDialog(target, "è obbligatorio inserire il nome");
+            return;
+        }
 
-        public void run(){
-            String s = JOptionPane.showInputDialog(target,"inserisci il nome dell'organo");
-            if(s == null || s.equals("")){
-                JOptionPane.showMessageDialog(target, "è obbligatorio inserire il nome");
+        for(Component component: target.getComponents())
+            if(component instanceof Rappresentation &&
+                    ((Rappresentation)component).getSubject().getName().equals(s)){
+                JOptionPane.showMessageDialog(target, "non è possibile avere due organi omonimi");
                 return;
             }
-            for(Component component: target.getComponents())
-                if(component instanceof Rappresentation &&
-                        ((Rappresentation)component).getSubject().getName().equals(s)){
-                    JOptionPane.showMessageDialog(target, "non è possibile avere due organi omonimi");
-                    return;
-                }
-            ChartTypeSelector c = new ChartTypeSelector(target);
-            c.config();
-            ChartTypeSelector.Type selection = c.getSelection();
-            while(selection == null){
-                try {
-                    sleep(2_000);
-                    selection = c.getSelection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
 
-            if(s != null && !s.equals("")){
-                SimpleChartRappresentation simp = new SimpleChartRappresentation(
-                        (selection == ChartTypeSelector.Type.COMPOSITE)?
-                                new CompositeOrganizzationChart(s):
-                                new BasicOrganizzationChart(s),target.getUsersDetailsPane(),
-                        target.getSupportedRoleView()
-                );
-                target.add(simp);
-                simp.setLocation(0,0);
-                simp.setPosition(new Point(0,0));
-            }
-            if(target.getComponents().length > i*10) {
-                target.setPreferredSize(new Dimension(target.getPreferredSize().width * 2,
-                        target.getPreferredSize().height * 2));
-                i++;
-            }
-            target.repaint();
-            target.revalidate();
+        String[] options = {"composito","semplice"};
+        String ris = (String)JOptionPane.showInputDialog(null,"scegli il tipo di organizzazione",
+                "scelta organizzazione",JOptionPane.PLAIN_MESSAGE,null, options,"composito");
+
+        if(ris == null)
+            return;
+        SimpleChartRappresentation simp = new SimpleChartRappresentation(
+                (ris.equals("semplice"))?new BasicOrganizzationChart(s):new CompositeOrganizzationChart(s),
+                target.getUsersDetailsPane(),
+                target.getSupportedRoleView());
+        target.add(simp);
+        simp.setLocation(0,0);
+        simp.setPosition(new Point(0,0));
+        if(target.getComponents().length > i*10) {
+            target.setPreferredSize(new Dimension(target.getPreferredSize().width * 2,
+                    target.getPreferredSize().height * 2));
+            i++;
         }
-    }
+        target.repaint();
+        target.revalidate();
 
+    }
 
 }

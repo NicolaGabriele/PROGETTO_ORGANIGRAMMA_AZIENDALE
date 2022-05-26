@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.Semaphore;
 
-public class AddEmployeeFrame extends JFrame implements ActionListener{
+public class AddEmployeeFrame extends JDialog implements ActionListener{
 
     private JPanel pannello;
     private JTextField name,surname,city, cap, street, roleName, rolePriority;
