@@ -1,11 +1,13 @@
 package logical_unit.commands;
 
+import presentation.MainFrame;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.others_graphic_component.AddConnectionPanel;
 import presentation.others_graphic_component.SupportedRoleView;
 import presentation.others_graphic_component.UsersDetails;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CreateNewOrganizzationChartPane implements Command{
 
@@ -22,6 +24,13 @@ public class CreateNewOrganizzationChartPane implements Command{
     @Override
     public void execute() {
         String name = JOptionPane.showInputDialog(pane.getParent(),"inserisci il nome del file");
-        pane.addTab(name,new JScrollPane(new RappresentationPanel(p,srv,addcp, name)));
+        if(name != null && !name.equals("")) {
+            pane.addTab(name, new JScrollPane(new RappresentationPanel(p, srv, addcp, name)));
+            Container m = pane.getParent();
+            while(!(m instanceof MainFrame))
+                m = m.getParent();
+            ((MainFrame)m).activateAllOption();
+        }else
+            JOptionPane.showMessageDialog(pane, "è obbligatorio specificare il nome del file");
     }
 }//CreateNewOrganizzationChartPane

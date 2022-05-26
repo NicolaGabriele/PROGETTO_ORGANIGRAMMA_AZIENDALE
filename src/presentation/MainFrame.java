@@ -1,11 +1,10 @@
 package presentation;
 
-import logical_unit.commands.CreateNewOrganizzationChartPane;
-import logical_unit.commands.Open;
-import logical_unit.commands.Save;
+import logical_unit.commands.*;
 import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.Role;
 import logical_unit.users.User;
+import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.chart_rappresentation.SimpleChartRappresentation;
 import presentation.others_graphic_component.AddConnectionPanel;
 import presentation.others_graphic_component.MyMenuItem;
@@ -19,12 +18,13 @@ public class MainFrame extends JFrame {
 
     private CardLayout c;
     private JMenuBar barraMenu;
-    private JMenu file, view;
+    private JMenu file, edit;
     private  JTabbedPane tabs;
     private JPanel pannelloPrincipale,pannelloTabs;
     private UsersDetails usersDetails;
     private SupportedRoleView supportedRoleDetails;
     private AddConnectionPanel addConnectionPanel;
+    private MyMenuItem newFile,save,open;
     public static final Dimension DEFAULT_SIZE = new Dimension(1080,720);
     public MainFrame(){
         super("gestore organigrammi aziendali");
@@ -36,17 +36,16 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(barraMenu = new JMenuBar());
         barraMenu.add(file = new JMenu("file"));
-        barraMenu.add(view = new JMenu("view"));
+        barraMenu.add(edit = new JMenu("edit"));
         pannelloTabs = new JPanel();
         usersDetails  = new UsersDetails(this);
         supportedRoleDetails = new SupportedRoleView(this);
         addConnectionPanel = new AddConnectionPanel(this);
         configLayout();
         pannelloTabsConfig();
-        file.add(new MyMenuItem("new",new CreateNewOrganizzationChartPane(tabs, usersDetails,supportedRoleDetails,addConnectionPanel)));
-        file.add(new MyMenuItem("save",new Save(tabs)));
-        file.add(new MyMenuItem("apri", new Open(this)));
+        configFileMenu();
         c.show(pannelloPrincipale,"pannello tabs");
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
     }
 
@@ -64,6 +63,16 @@ public class MainFrame extends JFrame {
         add(pannelloPrincipale);
     }
 
+    private void configFileMenu(){
+        file.add(newFile = new MyMenuItem("nuovo file",new CreateNewOrganizzationChartPane(tabs, usersDetails,supportedRoleDetails,addConnectionPanel)));
+        file.add(save = new MyMenuItem("save",new Save(tabs)));
+        file.add(open = new MyMenuItem("apri", new Open(this)));
+        save.setEnabled(false);
+    }
+
+    public void activateAllOption(){
+        save.setEnabled(true);
+    }
     private void pannelloTabsConfig(){
         pannelloTabs.setLayout(new BorderLayout());
         pannelloTabs.add(tabs = new JTabbedPane());

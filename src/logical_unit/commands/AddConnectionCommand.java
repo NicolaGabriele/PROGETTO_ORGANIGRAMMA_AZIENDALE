@@ -5,6 +5,7 @@ import presentation.chart_rappresentation.Rappresentation;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.others_graphic_component.AddConnectionPanel;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class AddConnectionCommand implements Command{
@@ -48,7 +49,13 @@ public class AddConnectionCommand implements Command{
                 }
             }
 
-            padre.getSubject().add(figlio.getSubject());
+            try {
+                padre.getSubject().add(figlio.getSubject());
+            }catch(UnsupportedOperationException e){
+                JOptionPane.showMessageDialog(panel.getMainFrame(),"organizzazioni semplici non possono avere organizzazioni sottoposte");
+                panel.getMainFrame().show("pannello tabs");
+                return;
+            }
             panel.getMainFrame().show("pannello tabs");
             Connection c = new Connection(padre,figlio);
             target.addConnection(c);

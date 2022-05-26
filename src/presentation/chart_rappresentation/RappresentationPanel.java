@@ -2,6 +2,7 @@ package presentation.chart_rappresentation;
 
 import logical_unit.commands.AddChartCommand;
 import logical_unit.commands.AddConnectionCommand;
+import logical_unit.commands.ClosePanel;
 import logical_unit.commands.RemoveConnection;
 import logical_unit.organizzation_charts.Connection;
 import presentation.MainFrame;
@@ -40,6 +41,7 @@ public class RappresentationPanel extends JPanel{
         menu.add(new MyMenuItem("add",new AddChartCommand(this)));
         menu.add(new MyMenuItem("aggiungi connessione", new AddConnectionCommand(this, connectionPanel)));
         menu.add(new MyMenuItem("rimuovi connessione", new RemoveConnection(this,connectionPanel)));
+        menu.add(new MyMenuItem("chiudi", new ClosePanel(this)));
     }
     @Override
     public void paintComponent(Graphics g){
@@ -54,6 +56,7 @@ public class RappresentationPanel extends JPanel{
             Connection ci = l;
             g2d.drawLine(ci.getStartX(), ci.getStartY(), ci.getEndX(), ci.getEndY());
         }
+
     }
     public void showMenu(){
         Point p = getMousePosition();

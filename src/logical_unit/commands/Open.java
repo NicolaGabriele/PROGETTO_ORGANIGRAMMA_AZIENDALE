@@ -58,8 +58,10 @@ public class Open implements Command{
                 else if (cr.getC2().equals(rappresentation.getSubject().getName()))
                     tail = rappresentation;
             }
-            if(head != null && tail != null)
-                p.addConnection(new Connection(head,tail, cr.getStartX(), cr.getStartY(), cr.getEndX(), cr.getEndY()));
+            if(head != null && tail != null) {
+                p.addConnection(new Connection(head, tail, cr.getStartX(), cr.getStartY(), cr.getEndX(), cr.getEndY()));
+                head.setMovable(false);tail.setMovable(false);
+            }
         }
 
         mainFrame.tab().addTab(p.getFileName(), new JScrollPane(p));

@@ -30,7 +30,7 @@ public class UsersDetails extends JPanel {
         panButton.setLayout(new BorderLayout());
         panButton.add(back = new JButton("<-"), BorderLayout.WEST);
         pan.add(panButton);
-        pan.add(new JLabel(" nome     priorita"),BorderLayout.NORTH);
+        pan.add(new JLabel(" id    nome    cognome    ruolo"),BorderLayout.NORTH);
         back.addActionListener((e)->{p.show("pannello tabs");});
         Record[] us = new Record[users.size()+1];
         int i = 0;

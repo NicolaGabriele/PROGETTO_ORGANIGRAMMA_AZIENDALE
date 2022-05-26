@@ -8,6 +8,7 @@ import presentation.others_graphic_component.SupportedRoleView;
 import presentation.others_graphic_component.UsersDetails;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;;
 import java.awt.event.MouseMotionListener;
@@ -24,11 +25,12 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         super(subject);
         height = 50;
         width = 200;
-        setPreferredSize(new Dimension(width+10,height+10));
+        setPreferredSize(new Dimension(width,height));
         addMouseMotionListener(this);
         this.details = details;
         this.srv = srv;
         configPopUp();
+        setBackground(Color.CYAN);
 
     }
 
@@ -52,8 +54,11 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         Graphics2D g2d = (Graphics2D) g;
         g2d.setFont(new Font("none",Font.BOLD,15));
         g2d.setStroke(new BasicStroke(2));
-        g2d.drawRect(1,0,width,height);
+        g2d.setColor(getBackground());
+        g2d.fillRect(1,0,width,height);
+        g2d.setColor(Color.BLACK);
         g2d.drawString(subject.getName(),2,15);
+        setBorder(new LineBorder(Color.BLACK));
     }
 
 
