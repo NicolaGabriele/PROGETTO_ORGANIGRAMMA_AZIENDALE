@@ -54,11 +54,11 @@ public class MainFrame extends JFrame {
         pannelloPrincipale.setLayout(c = new CardLayout());
         pannelloPrincipale.add(pannelloTabs);
         pannelloPrincipale.add(usersDetails);
-        pannelloPrincipale.add(supportedRoleDetails);
+        //pannelloPrincipale.add(supportedRoleDetails);
         pannelloPrincipale.add(addConnectionPanel);
         c.addLayoutComponent(pannelloTabs,"pannello tabs");
         c.addLayoutComponent(usersDetails,"users details");
-        c.addLayoutComponent(supportedRoleDetails,"roles details");
+        //c.addLayoutComponent(supportedRoleDetails,"roles details");
         c.addLayoutComponent(addConnectionPanel,"add connection panel");
         add(pannelloPrincipale);
     }
@@ -96,6 +96,14 @@ public class MainFrame extends JFrame {
 
     public AddConnectionPanel getAddConnectionPanel(){
         return addConnectionPanel;
+    }
+
+    public CardLayout getLayoutManager(){
+        return c;
+    }
+
+    public JPanel getPannelloPrincipale(){
+        return pannelloPrincipale;
     }
 
 }

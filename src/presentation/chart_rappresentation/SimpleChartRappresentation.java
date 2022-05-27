@@ -2,6 +2,7 @@ package presentation.chart_rappresentation;
 
 import logical_unit.commands.*;
 import logical_unit.organizzation_charts.OrganizzationChart;
+import presentation.MainFrame;
 import presentation.listeners.SimpleRappresentationMouseListener;
 import presentation.others_graphic_component.MyMenuItem;
 import presentation.others_graphic_component.SupportedRoleView;
@@ -20,8 +21,8 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
     private static final int maxCaratteri = 22;
     private JPopupMenu popupMenu;
     private UsersDetails details;
-    private SupportedRoleView srv;
-    public SimpleChartRappresentation(OrganizzationChart subject, UsersDetails details, SupportedRoleView srv){
+    private MainFrame srv;
+    public SimpleChartRappresentation(OrganizzationChart subject, UsersDetails details, MainFrame srv){
         super(subject);
         height = 50;
         width = 200;
@@ -37,9 +38,9 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
     private void configPopUp(){
         add(popupMenu = new JPopupMenu());
         addMouseListener(new SimpleRappresentationMouseListener(this));
-        popupMenu.add(new MyMenuItem("nuovo dipendente",new AddEmployess(subject)));
+        popupMenu.add(new MyMenuItem("nuovo dipendente",new AddEmployess(this)));
         popupMenu.add(new MyMenuItem("dettagli dipendenti",new ViewUsersDetails(subject, details)));
-        popupMenu.add(new MyMenuItem("aggiungi ruolo",new AddRole(subject)));
+        popupMenu.add(new MyMenuItem("aggiungi ruolo",new AddRole(this)));
         popupMenu.add(new MyMenuItem("dettagli ruoli", new ViewSupportedRolesCmd(subject,srv)));
         popupMenu.add(new MyMenuItem("elimina", new RemoveChart(this)));
     }

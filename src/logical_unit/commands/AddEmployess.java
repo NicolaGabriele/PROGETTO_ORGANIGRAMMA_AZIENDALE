@@ -1,55 +1,34 @@
 package logical_unit.commands;
 
-import logical_unit.organizzation_charts.OrganizzationChart;
 import logical_unit.organizzation_charts.Role;
 import logical_unit.users.Employee;
-import presentation.others_graphic_component.AddEmployeeFrame;
+import presentation.chart_rappresentation.SimpleChartRappresentation;
+import presentation.others_graphic_component.AddEmployeeDialog;
 
 import javax.swing.*;
-import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 
 public class AddEmployess implements Command {
 
-    private OrganizzationChart o;
-    public AddEmployess(OrganizzationChart organizzationChart) {
-        this.o = organizzationChart;
+    private SimpleChartRappresentation rap;
+    public AddEmployess(SimpleChartRappresentation rap) {
+        this.rap = rap;
     }
     @Override
     public void execute() {
-        new Executor(o).start();
+        AddEmployeeDialog a = new AddEmployeeDialog();
+        a.createDialog("inserire i dati del dipendente").setVisible(true);
+        Employee newEmp = a.getEmployee();
+        Role newRole = a.getRole();
+        if(newEmp == null || newRole == null )
+            JOptionPane.showMessageDialog(rap, "parametri non corretti");
+        else
+            if(!rap.getSubject().getSupportedRoles().contains(newRole))
+                JOptionPane.showMessageDialog(rap.getParent(), "il ruolo inserito non è compatibile con l'organo selezionato");
+            else{
+                rap.getSubject().addMember(newEmp, newRole);
+                JOptionPane.showMessageDialog(rap, "operazione completata con successo");
+            }
 
     }
 
-    private static class Executor extends Thread {
-
-        private OrganizzationChart o;
-        public Executor(OrganizzationChart o) {
-            this.o = o;
-        }
-
-        @Override
-        public void run() {
-            AddEmployeeFrame ap = new AddEmployeeFrame();
-            ap.config();
-            while (!ap.finish()) {
-                try {
-                    sleep(2_000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            Employee emp = ap.getEmployee();
-            Role role = ap.getRole();
-            if (emp == null || role == null)
-                JOptionPane.showMessageDialog(null, "parametri non corretti");
-            else if (!o.getSupportedRoles().contains(role))
-                JOptionPane.showMessageDialog(null, "ruolo inserito non supportato");
-            else {
-                o.addMember(emp, role);
-                JOptionPane.showMessageDialog(null, "operazione completata");
-            }
-            System.out.println(emp+" "+role);
-        }
-    }
 }

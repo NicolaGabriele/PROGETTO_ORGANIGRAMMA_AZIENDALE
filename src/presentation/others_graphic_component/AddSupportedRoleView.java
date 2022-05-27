@@ -5,9 +5,8 @@ import logical_unit.organizzation_charts.Role;
 import javax.swing.*;
 import java.awt.*;
 
-public class AddSupportedRoleView extends JFrame {
+public class AddSupportedRoleView extends JOptionPane {
 
-    private static final Dimension default_size = new Dimension(350,250);
     private JTextField roleName, rolePriority;
     private JLabel rn, rp;
     private JPanel p1,p2,p3,p4,principale;
@@ -19,9 +18,7 @@ public class AddSupportedRoleView extends JFrame {
     }
 
     private void config(){
-        setTitle("inserisci i dati del ruolo da aggiungere");
-        setSize(default_size);
-        setResizable(false);
+        removeAll();
         add(principale = new JPanel());
         principale.setLayout(new GridLayout(4,1));
         principale.add(p1 = new JPanel());
@@ -37,22 +34,36 @@ public class AddSupportedRoleView extends JFrame {
         rolePriority.setColumns(20);
         p4.add(submit = new JButton("SUBMIT"));
         submit.addActionListener((e)->{
+            Container c = getParent();
+            while(!(c instanceof JDialog))
+                c = c.getParent();
             try{
                 String role = roleName.getText().trim();
-                if(role.equals(""))
+                if(role == null || role.equals("")) {
                     JOptionPane.showMessageDialog(this, "il nome è obbligatorio");
+                    c.setVisible(false);
+                    return;
+                }
                 int prior = Integer.parseInt(rolePriority.getText().trim());
-                if(!role.equals("") && prior > 0)
-                    r = new Role(role,prior);
+                if( prior < 0) {
+                    JOptionPane.showMessageDialog(this, "la priorità deve essere un numero positivo");
+                    c.setVisible(false);
+                    return;
+                }
+                System.out.println("correct");
+                r = new Role(role,prior);
+                c.setVisible(false);
             }catch(NumberFormatException er){
                 JOptionPane.showMessageDialog(this, "la priorità deve essere un numero");
+                c.setVisible(false);
             }
         });
-        setVisible(true);
     }
 
     public Role getRole(){
-        return r;
+        Role ret = r;
+        r = null;
+        return ret;
     }
     public static void main(String...args){
         new AddSupportedRoleView().config();

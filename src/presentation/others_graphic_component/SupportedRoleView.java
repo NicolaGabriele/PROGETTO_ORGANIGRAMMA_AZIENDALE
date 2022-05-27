@@ -18,6 +18,7 @@ public class SupportedRoleView extends JPanel {
     public void config(Collection<Role> roles){
         if(roles == null)
             return;
+        System.out.println("roles size: "+roles.size());
         setLayout(new BorderLayout());
         JPanel pan = new JPanel();
         pan.setLayout(new GridLayout(2,1));
@@ -43,6 +44,9 @@ public class SupportedRoleView extends JPanel {
         public Record(Role r){
             this.role = r.getName();
             this.priority = String.valueOf(r.getPriority());
+        }
+        public String toString(){
+            return role;
         }
     }
 }

@@ -2,6 +2,7 @@ package logical_unit.commands;
 
 import logical_unit.organizzation_charts.BasicOrganizzationChart;
 import logical_unit.organizzation_charts.CompositeOrganizzationChart;
+import presentation.MainFrame;
 import presentation.chart_rappresentation.Rappresentation;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.chart_rappresentation.SimpleChartRappresentation;
@@ -41,10 +42,14 @@ public class AddChartCommand implements Command{
 
         if(ris == null)
             return;
+
+        Component c = target.getParent();
+        while(! (c instanceof MainFrame))
+            c = c.getParent();
         SimpleChartRappresentation simp = new SimpleChartRappresentation(
                 (ris.equals("semplice"))?new BasicOrganizzationChart(s):new CompositeOrganizzationChart(s),
                 target.getUsersDetailsPane(),
-                target.getSupportedRoleView());
+                (MainFrame)c);
         target.add(simp);
         simp.setLocation(0,0);
         simp.setPosition(new Point(0,0));

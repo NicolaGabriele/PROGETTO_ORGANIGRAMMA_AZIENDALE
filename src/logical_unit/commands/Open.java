@@ -43,7 +43,7 @@ public class Open implements Command{
         for(Record r: rappresentations){
             Rappresentation rap = new SimpleChartRappresentation(r.getElement(),
                                                                  mainFrame.getUserDetailsPanel(),
-                                                                 mainFrame.getSupportedRoleDetails());
+                                                                 mainFrame);
             rap.setPosition(r.getPosition());
             rap.setLocation(r.getLocation());
             aux.add(rap);
