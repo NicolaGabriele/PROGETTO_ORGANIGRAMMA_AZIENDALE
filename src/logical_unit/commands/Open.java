@@ -35,8 +35,7 @@ public class Open implements Command{
         List<Record> rappresentations = new LinkedList<>();
         List<ConnectionRecord> connections = new LinkedList<>();
         PersistenceUnit.MANAGER.read(f,rappresentations,connections);
-        RappresentationPanel p = new RappresentationPanel(mainFrame.getUserDetailsPanel(),
-                                                          mainFrame.getAddConnectionPanel(),
+        RappresentationPanel p = new RappresentationPanel(mainFrame,
                                                           f.getName());
         List<Rappresentation> aux = new LinkedList<>();
         for(Record r: rappresentations){

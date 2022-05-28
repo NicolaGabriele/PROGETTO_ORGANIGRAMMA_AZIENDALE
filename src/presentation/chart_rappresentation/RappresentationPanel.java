@@ -20,16 +20,16 @@ public class RappresentationPanel extends JPanel{
     private JPopupMenu menu;
     private UsersDetails p;
     private java.util.List<Connection> connections;
-    private AddConnectionPanel connectionPanel;
+    private MainFrame mainFrame;
     private String fileName;
-    public RappresentationPanel(UsersDetails p, AddConnectionPanel connectionPanel,String name){
+    public RappresentationPanel(MainFrame mainFrame,String name){
         setBackground(Color.WHITE);
+        this.mainFrame = mainFrame;
         add( menu = new JPopupMenu());
         addMouseListener(new RappresentationPaneMouseListener(this));
         setPreferredSize(MainFrame.DEFAULT_SIZE);
         this.p = p;
         connections = new LinkedList<Connection>();
-        this.connectionPanel = connectionPanel;
         configPopUp();
         this.fileName = name;
     }
@@ -37,8 +37,8 @@ public class RappresentationPanel extends JPanel{
 
     public void configPopUp(){
         menu.add(new MyMenuItem("add",new AddChartCommand(this)));
-        menu.add(new MyMenuItem("aggiungi connessione", new AddConnectionCommand(this, connectionPanel)));
-        menu.add(new MyMenuItem("rimuovi connessione", new RemoveConnection(this,connectionPanel)));
+        menu.add(new MyMenuItem("aggiungi connessione", new AddConnectionCommand(this, mainFrame)));
+        menu.add(new MyMenuItem("rimuovi connessione", new RemoveConnection(this,mainFrame)));
         menu.add(new MyMenuItem("chiudi", new ClosePanel(this)));
     }
     @Override

@@ -6,7 +6,6 @@ import logical_unit.organizzation_charts.Role;
 import logical_unit.users.User;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.chart_rappresentation.SimpleChartRappresentation;
-import presentation.others_graphic_component.AddConnectionPanel;
 import presentation.others_graphic_component.MyMenuItem;
 import presentation.others_graphic_component.SupportedRoleView;
 import presentation.others_graphic_component.UsersDetails;
@@ -22,7 +21,6 @@ public class MainFrame extends JFrame {
     private  JTabbedPane tabs;
     private JPanel pannelloPrincipale,pannelloTabs;
     private UsersDetails usersDetails;
-    private AddConnectionPanel addConnectionPanel;
     private MyMenuItem newFile,save,open;
     public static final Dimension DEFAULT_SIZE = new Dimension(1080,720);
     public MainFrame(){
@@ -38,7 +36,6 @@ public class MainFrame extends JFrame {
         barraMenu.add(edit = new JMenu("edit"));
         pannelloTabs = new JPanel();
         usersDetails  = new UsersDetails(this);
-        addConnectionPanel = new AddConnectionPanel(this);
         configLayout();
         pannelloTabsConfig();
         configFileMenu();
@@ -51,16 +48,12 @@ public class MainFrame extends JFrame {
         pannelloPrincipale = new JPanel();
         pannelloPrincipale.setLayout(c = new CardLayout());
         pannelloPrincipale.add(pannelloTabs);
-        //pannelloPrincipale.add(usersDetails);
-        pannelloPrincipale.add(addConnectionPanel);
         c.addLayoutComponent(pannelloTabs,"pannello tabs");
-        //c.addLayoutComponent(usersDetails,"users details");
-        c.addLayoutComponent(addConnectionPanel,"add connection panel");
         add(pannelloPrincipale);
     }
 
     private void configFileMenu(){
-        file.add(newFile = new MyMenuItem("nuovo file",new CreateNewOrganizzationChartPane(tabs, usersDetails,addConnectionPanel)));
+        file.add(newFile = new MyMenuItem("nuovo file",new CreateNewOrganizzationChartPane(tabs, this)));
         file.add(save = new MyMenuItem("save",new Save(tabs)));
         file.add(open = new MyMenuItem("apri", new Open(this)));
         save.setEnabled(false);
@@ -87,9 +80,6 @@ public class MainFrame extends JFrame {
     }
 
 
-    public AddConnectionPanel getAddConnectionPanel(){
-        return addConnectionPanel;
-    }
 
     public CardLayout getLayoutManager(){
         return c;

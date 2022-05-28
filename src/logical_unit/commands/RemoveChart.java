@@ -3,7 +3,6 @@ package logical_unit.commands;
 import logical_unit.organizzation_charts.Connection;
 import presentation.chart_rappresentation.Rappresentation;
 import presentation.chart_rappresentation.RappresentationPanel;
-import presentation.others_graphic_component.AddConnectionPanel;
 
 public class RemoveChart implements Command{
 

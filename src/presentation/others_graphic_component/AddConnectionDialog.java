@@ -8,23 +8,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
-public class AddConnectionPanel extends JPanel {
+
+public class AddConnectionDialog extends JOptionPane {
 
     private JList<Rappresentation> list;
     private JButton submit;
-    private MainFrame p;
     private Rappresentation raps;
-    private Font myFont ;
-
-    public AddConnectionPanel(MainFrame p) {
-        this.p = p;
+    private final Font myFont = new Font("Times Romans",Font.BOLD,15);
+    public AddConnectionDialog(){
+        removeAll();
         raps = null;
-        myFont = new Font("Times Romans",Font.BOLD,17);
     }
 
-    public void config(RappresentationPanel pan, String label){
-        for(Component comp: getComponents())
-            remove(comp);
+    public void config(RappresentationPanel pan, MainFrame p,String label){
         setLayout(new BorderLayout());
         List<Rappresentation> rps = new LinkedList<Rappresentation>();
         for(Component c: pan.getComponents())
@@ -46,9 +42,7 @@ public class AddConnectionPanel extends JPanel {
         pannelloBottone.setLayout(new BorderLayout());
         pannelloBottone.add(back,BorderLayout.WEST);
         pannelloNord.add(pannelloBottone);
-        pannelloBottone.setBackground(Color.WHITE);
         JPanel pannelloLabel = new JPanel();
-        pannelloLabel.setBackground(Color.WHITE);
         JLabel title = new JLabel(label);
         title.setFont(myFont);
         title.setForeground(Color.RED);
@@ -56,7 +50,6 @@ public class AddConnectionPanel extends JPanel {
         pannelloNord.add(pannelloLabel);
         add(pannelloNord,BorderLayout.NORTH);
         JPanel aux = new JPanel();
-        aux.setBackground(Color.WHITE);
         aux.add(submit = new JButton("SUBMIT"));
         add(aux,BorderLayout.SOUTH);
         add(list = new JList<Rappresentation>(arr), BorderLayout.CENTER);
@@ -64,19 +57,19 @@ public class AddConnectionPanel extends JPanel {
         submit.addActionListener((e) -> {
             List<Rappresentation> res = list.getSelectedValuesList();
             if(res.size() == 1){
-               this.raps = list.getSelectedValue();
+                this.raps = list.getSelectedValue();
             }
+            Container c = getParent();
+            for(; !(c instanceof JDialog); c = c.getParent());
+            c.setVisible(false);
+
         });
-        p.show("add connection panel");
+
+        createDialog(label).setVisible(true);
     }
 
-    public Rappresentation getSelection(){
-        Rappresentation r = raps;
-        raps = null;
-        return r;
+    public Rappresentation getRappresentation(){
+        return raps;
     }
 
-    public MainFrame getMainFrame(){
-        return p;
-    }
 }
