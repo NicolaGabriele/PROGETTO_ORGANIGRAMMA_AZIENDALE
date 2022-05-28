@@ -22,7 +22,7 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
     private JPopupMenu popupMenu;
     private UsersDetails details;
     private MainFrame srv;
-    public SimpleChartRappresentation(OrganizzationChart subject, UsersDetails details, MainFrame srv){
+    public SimpleChartRappresentation(OrganizzationChart subject, MainFrame srv){
         super(subject);
         height = 50;
         width = 200;
@@ -39,7 +39,7 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         add(popupMenu = new JPopupMenu());
         addMouseListener(new SimpleRappresentationMouseListener(this));
         popupMenu.add(new MyMenuItem("nuovo dipendente",new AddEmployess(this)));
-        popupMenu.add(new MyMenuItem("dettagli dipendenti",new ViewUsersDetails(subject, details)));
+        popupMenu.add(new MyMenuItem("dettagli dipendenti",new ViewUsersDetails(subject, srv)));
         popupMenu.add(new MyMenuItem("aggiungi ruolo",new AddRole(this)));
         popupMenu.add(new MyMenuItem("dettagli ruoli", new ViewSupportedRolesCmd(subject,srv)));
         popupMenu.add(new MyMenuItem("elimina", new RemoveChart(this)));

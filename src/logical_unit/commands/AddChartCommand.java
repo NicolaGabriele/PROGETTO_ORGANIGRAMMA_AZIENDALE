@@ -48,7 +48,6 @@ public class AddChartCommand implements Command{
             c = c.getParent();
         SimpleChartRappresentation simp = new SimpleChartRappresentation(
                 (ris.equals("semplice"))?new BasicOrganizzationChart(s):new CompositeOrganizzationChart(s),
-                target.getUsersDetailsPane(),
                 (MainFrame)c);
         target.add(simp);
         simp.setLocation(0,0);

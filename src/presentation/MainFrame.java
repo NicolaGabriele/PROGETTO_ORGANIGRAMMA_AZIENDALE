@@ -22,7 +22,6 @@ public class MainFrame extends JFrame {
     private  JTabbedPane tabs;
     private JPanel pannelloPrincipale,pannelloTabs;
     private UsersDetails usersDetails;
-    private SupportedRoleView supportedRoleDetails;
     private AddConnectionPanel addConnectionPanel;
     private MyMenuItem newFile,save,open;
     public static final Dimension DEFAULT_SIZE = new Dimension(1080,720);
@@ -39,7 +38,6 @@ public class MainFrame extends JFrame {
         barraMenu.add(edit = new JMenu("edit"));
         pannelloTabs = new JPanel();
         usersDetails  = new UsersDetails(this);
-        supportedRoleDetails = new SupportedRoleView(this);
         addConnectionPanel = new AddConnectionPanel(this);
         configLayout();
         pannelloTabsConfig();
@@ -53,18 +51,16 @@ public class MainFrame extends JFrame {
         pannelloPrincipale = new JPanel();
         pannelloPrincipale.setLayout(c = new CardLayout());
         pannelloPrincipale.add(pannelloTabs);
-        pannelloPrincipale.add(usersDetails);
-        //pannelloPrincipale.add(supportedRoleDetails);
+        //pannelloPrincipale.add(usersDetails);
         pannelloPrincipale.add(addConnectionPanel);
         c.addLayoutComponent(pannelloTabs,"pannello tabs");
-        c.addLayoutComponent(usersDetails,"users details");
-        //c.addLayoutComponent(supportedRoleDetails,"roles details");
+        //c.addLayoutComponent(usersDetails,"users details");
         c.addLayoutComponent(addConnectionPanel,"add connection panel");
         add(pannelloPrincipale);
     }
 
     private void configFileMenu(){
-        file.add(newFile = new MyMenuItem("nuovo file",new CreateNewOrganizzationChartPane(tabs, usersDetails,supportedRoleDetails,addConnectionPanel)));
+        file.add(newFile = new MyMenuItem("nuovo file",new CreateNewOrganizzationChartPane(tabs, usersDetails,addConnectionPanel)));
         file.add(save = new MyMenuItem("save",new Save(tabs)));
         file.add(open = new MyMenuItem("apri", new Open(this)));
         save.setEnabled(false);
@@ -90,9 +86,6 @@ public class MainFrame extends JFrame {
         return tabs;
     }
 
-    public SupportedRoleView getSupportedRoleDetails(){
-        return supportedRoleDetails;
-    }
 
     public AddConnectionPanel getAddConnectionPanel(){
         return addConnectionPanel;

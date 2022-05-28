@@ -15,7 +15,7 @@ public class CreateNewOrganizzationChartPane implements Command{
     private JTabbedPane pane;
     private UsersDetails p;
     private AddConnectionPanel addcp;
-    public CreateNewOrganizzationChartPane(JTabbedPane pane, UsersDetails p, SupportedRoleView srv, AddConnectionPanel addcp){
+    public CreateNewOrganizzationChartPane(JTabbedPane pane, UsersDetails p, AddConnectionPanel addcp){
         this.pane = pane;
         this.p = p;
         this.srv = srv;
@@ -25,7 +25,7 @@ public class CreateNewOrganizzationChartPane implements Command{
     public void execute() {
         String name = JOptionPane.showInputDialog(pane.getParent(),"inserisci il nome del file");
         if(name != null && !name.equals("")) {
-            pane.addTab(name, new JScrollPane(new RappresentationPanel(p, srv, addcp, name)));
+            pane.addTab(name, new JScrollPane(new RappresentationPanel(p, addcp, name)));
             Container m = pane.getParent();
             while(!(m instanceof MainFrame))
                 m = m.getParent();

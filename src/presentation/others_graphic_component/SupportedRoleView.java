@@ -46,7 +46,7 @@ public class SupportedRoleView extends JPanel {
             this.priority = String.valueOf(r.getPriority());
         }
         public String toString(){
-            return role;
+            return role+"    "+priority;
         }
     }
 }

@@ -17,19 +17,17 @@ import java.util.LinkedList;
 
 public class RappresentationPanel extends JPanel{
 
-    private SupportedRoleView srv;
     private JPopupMenu menu;
     private UsersDetails p;
     private java.util.List<Connection> connections;
     private AddConnectionPanel connectionPanel;
     private String fileName;
-    public RappresentationPanel(UsersDetails p, SupportedRoleView srv, AddConnectionPanel connectionPanel,String name){
+    public RappresentationPanel(UsersDetails p, AddConnectionPanel connectionPanel,String name){
         setBackground(Color.WHITE);
         add( menu = new JPopupMenu());
         addMouseListener(new RappresentationPaneMouseListener(this));
         setPreferredSize(MainFrame.DEFAULT_SIZE);
         this.p = p;
-        this.srv = srv;
         connections = new LinkedList<Connection>();
         this.connectionPanel = connectionPanel;
         configPopUp();
@@ -68,9 +66,6 @@ public class RappresentationPanel extends JPanel{
         return p;
     }
 
-    public SupportedRoleView getSupportedRoleView(){
-        return srv;
-    }
 
     public void addConnection(Connection l){
         connections.add(l);

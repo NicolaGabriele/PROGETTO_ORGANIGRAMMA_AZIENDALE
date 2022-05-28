@@ -36,13 +36,11 @@ public class Open implements Command{
         List<ConnectionRecord> connections = new LinkedList<>();
         PersistenceUnit.MANAGER.read(f,rappresentations,connections);
         RappresentationPanel p = new RappresentationPanel(mainFrame.getUserDetailsPanel(),
-                                                          mainFrame.getSupportedRoleDetails(),
                                                           mainFrame.getAddConnectionPanel(),
                                                           f.getName());
         List<Rappresentation> aux = new LinkedList<>();
         for(Record r: rappresentations){
             Rappresentation rap = new SimpleChartRappresentation(r.getElement(),
-                                                                 mainFrame.getUserDetailsPanel(),
                                                                  mainFrame);
             rap.setPosition(r.getPosition());
             rap.setLocation(r.getLocation());
