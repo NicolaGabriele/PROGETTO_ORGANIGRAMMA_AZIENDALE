@@ -97,8 +97,13 @@ public class RappresentationPanel extends JPanel{
         Iterator<Connection> it = connections.iterator();
         while (it.hasNext()){
             Connection c = it.next();
-            if(c.getHead() == r || c.getTail() == r)
+            if(c.getHead() == r || c.getTail() == r) {
                 it.remove();
+                if (c.getHead() == r && numberOfConnections(c.getTail()) == 0)
+                    c.getTail().setMovable(true);
+                else if (c.getTail() == r && numberOfConnections(c.getHead()) == 0)
+                    c.getHead().setMovable(true);
+            }
         }
     }
 

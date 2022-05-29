@@ -20,7 +20,6 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
     private int height,width;
     private static final int maxCaratteri = 22;
     private JPopupMenu popupMenu;
-    private UsersDetails details;
     private MainFrame srv;
     public SimpleChartRappresentation(OrganizzationChart subject, MainFrame srv){
         super(subject);
@@ -28,7 +27,6 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         width = 200;
         setPreferredSize(new Dimension(width,height));
         addMouseMotionListener(this);
-        this.details = details;
         this.srv = srv;
         configPopUp();
         setBackground(Color.CYAN);
@@ -43,6 +41,8 @@ public class SimpleChartRappresentation extends Rappresentation implements Mouse
         popupMenu.add(new MyMenuItem("aggiungi ruolo",new AddRole(this)));
         popupMenu.add(new MyMenuItem("dettagli ruoli", new ViewSupportedRolesCmd(subject,srv)));
         popupMenu.add(new MyMenuItem("elimina", new RemoveChart(this)));
+        popupMenu.add(new MyMenuItem("rimuovi dipendente", new RemoveEmployee(this)));
+        popupMenu.add(new MyMenuItem("rimuovi ruolo", new RemoveRole(this)));
     }
 
     public void showMenu(){

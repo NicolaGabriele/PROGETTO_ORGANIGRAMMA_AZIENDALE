@@ -63,5 +63,6 @@ public class Open implements Command{
 
         mainFrame.tab().addTab(p.getFileName(), new JScrollPane(p));
         p.repaint();
+        mainFrame.activateAllOption();
     }
 }

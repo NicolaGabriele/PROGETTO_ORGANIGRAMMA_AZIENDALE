@@ -1,8 +1,8 @@
 package logical_unit.commands;
 
-import logical_unit.organizzation_charts.Connection;
 import presentation.chart_rappresentation.Rappresentation;
 import presentation.chart_rappresentation.RappresentationPanel;
+
 
 public class RemoveChart implements Command{
 

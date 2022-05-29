@@ -6,18 +6,21 @@ import logical_unit.organizzation_charts.Role;
 import logical_unit.users.User;
 import presentation.chart_rappresentation.RappresentationPanel;
 import presentation.chart_rappresentation.SimpleChartRappresentation;
+import presentation.others_graphic_component.HelpView;
 import presentation.others_graphic_component.MyMenuItem;
 import presentation.others_graphic_component.SupportedRoleView;
 import presentation.others_graphic_component.UsersDetails;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
 
     private CardLayout c;
     private JMenuBar barraMenu;
-    private JMenu file, edit;
+    private JMenu file;
     private  JTabbedPane tabs;
     private JPanel pannelloPrincipale,pannelloTabs;
     private UsersDetails usersDetails;
@@ -33,7 +36,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(barraMenu = new JMenuBar());
         barraMenu.add(file = new JMenu("file"));
-        barraMenu.add(edit = new JMenu("edit"));
+        barraMenu.add(new MyMenuItem("help", new ShowHelp()));
         pannelloTabs = new JPanel();
         usersDetails  = new UsersDetails(this);
         configLayout();
@@ -71,9 +74,6 @@ public class MainFrame extends JFrame {
         c.show(pannelloPrincipale,s);
     }
 
-    public UsersDetails getUserDetailsPanel(){
-        return (UsersDetails) usersDetails;
-    }
 
     public JTabbedPane tab(){
         return tabs;
