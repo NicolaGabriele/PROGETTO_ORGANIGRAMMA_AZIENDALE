@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="junit-jupiter-5.8.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../PROGETTO/junit-jupiter-5.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../PROGETTO/junit-jupiter-api-5.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../PROGETTO/junit-jupiter-engine-5.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../PROGETTO/junit-jupiter-migrationsupport-5.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../PROGETTO/junit-jupiter-params-5.8.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
