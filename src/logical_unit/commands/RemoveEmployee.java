@@ -7,6 +7,7 @@ import presentation.others_graphic_component.SelectionFromList;
 
 import javax.swing.JOptionPane;
 
+
 public class RemoveEmployee implements Command{
 
     private Rappresentation target;

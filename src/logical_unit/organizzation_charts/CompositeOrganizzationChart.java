@@ -22,12 +22,12 @@ public class CompositeOrganizzationChart extends AbstractOrganizzationChart{
 
     @Override
     public boolean remove(OrganizzationChart organizzationChart) {
-        return children.add(organizzationChart);
+        return children.remove(organizzationChart);
     }//remove
 
     @Override
     public boolean contain(OrganizzationChart organizzationChart) {
-        return false;
+        return children.contains(organizzationChart);
     }//contain
 
     @Override

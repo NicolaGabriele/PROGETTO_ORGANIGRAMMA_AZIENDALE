@@ -8,6 +8,7 @@ import presentation.others_graphic_component.SelectionFromList;
 import javax.swing.*;
 import java.util.Map;
 
+
 public class RemoveRole implements Command{
 
     private Rappresentation target;
