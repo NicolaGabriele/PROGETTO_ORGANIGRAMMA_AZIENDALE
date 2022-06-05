@@ -23,11 +23,12 @@ public class Employee implements User{
     }
 
     public boolean equals(Object o){
-        if(o == null || ! (o instanceof User))
+        if(o == null || ! (o instanceof Employee))
             return false;
         if(o == this)
             return true;
-        return ((User)o).getID() == id;
+        Employee e = (Employee) o;
+        return e.name.equals(name) && e.surname.equals(surname);
     }//equals
 
     public String getName() {

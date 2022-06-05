@@ -1,8 +1,11 @@
 package logical_unit.organizzation_charts;
 
 import exceptions.NotRemovableRoleException;
+import exceptions.RoleNotSupportedException;
+import logical_unit.users.Employee;
 import logical_unit.users.User;
 
+import java.lang.reflect.Member;
 import java.util.*;
 
 public abstract class AbstractOrganizzationChart implements OrganizzationChart{
@@ -49,17 +52,27 @@ public abstract class AbstractOrganizzationChart implements OrganizzationChart{
 
     @Override
     public void addMember(User member, Role role) {
+        if(! supportedRoles.contains(role))
+            throw new RoleNotSupportedException();
         employees.put(member,role);
     }//addMember
 
     @Override
     public void removeMember(User member) {
-        employees.remove(member);
+        for(User m: employees.keySet())
+            if(((Employee)m).equals((Employee) member)) {
+                employees.remove(m);
+                break;
+            }
     }//removeMember
 
     @Override
     public boolean isMember(User member) {
-        return employees.keySet().contains(member);
+        for(User u: employees.keySet())
+            if(((Employee)u).equals((Employee) member)){
+                return true;
+            }
+        return false;
     }
 
     @Override
