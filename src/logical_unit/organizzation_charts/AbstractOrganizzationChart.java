@@ -4,6 +4,7 @@ import exceptions.NotRemovableRoleException;
 import exceptions.RoleNotSupportedException;
 import logical_unit.users.Employee;
 import logical_unit.users.User;
+import presentation.chart_rappresentation.Rappresentation;
 
 import java.lang.reflect.Member;
 import java.util.*;
@@ -13,6 +14,7 @@ public abstract class AbstractOrganizzationChart implements OrganizzationChart{
     private String name, description;
     private List<Role> supportedRoles;
     private Map<User,Role> employees;
+    private Rappresentation parent;
     public AbstractOrganizzationChart(String name){
         if(name == null)
             throw new IllegalArgumentException("non è possibile definire diagrammi senza nome");
@@ -20,8 +22,19 @@ public abstract class AbstractOrganizzationChart implements OrganizzationChart{
         this.description = "nessuna descrizione inserita";
         this.supportedRoles = new LinkedList<Role>();
         this.employees = new TreeMap<User,Role>();
+        this.parent = null;
     }
 
+    @Override
+    public abstract void removeAllChildren();
+    @Override
+    public Rappresentation getParent(){
+        return parent;
+    }
+    @Override
+    public void setParent(Rappresentation parent){
+        this.parent = parent;
+    }
     @Override
     public abstract boolean add(OrganizzationChart organizzationChart);
 

@@ -26,4 +26,9 @@ public class BasicOrganizzationChart extends AbstractOrganizzationChart {
     public Collection<OrganizzationChart> getChildren() {
         return null;
     }
+
+    @Override
+    public void removeAllChildren() {
+        throw new UnsupportedOperationException("elementi basilari possono essere solo foglie");
+    }
 }//BasicOrganizzationChart

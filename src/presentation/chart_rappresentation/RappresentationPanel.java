@@ -105,6 +105,8 @@ public class RappresentationPanel extends JPanel{
                     c.getHead().setMovable(true);
             }
         }
+        r.getSubject().setParent(null);
+        r.getSubject().removeAllChildren();
     }
 
     public String getFileName(){

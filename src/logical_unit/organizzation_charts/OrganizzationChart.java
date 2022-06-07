@@ -1,6 +1,8 @@
 package logical_unit.organizzation_charts;
 
 import logical_unit.users.User;
+import presentation.chart_rappresentation.Rappresentation;
+
 import java.io.Serializable;
 import java.lang.reflect.Member;
 import java.util.Collection;
@@ -9,6 +11,9 @@ import java.util.Map;
 public interface OrganizzationChart extends Serializable,Comparable<OrganizzationChart> {
 
 
+    void removeAllChildren();
+    Rappresentation getParent();
+    void setParent(Rappresentation parent);
 
     /**
      *

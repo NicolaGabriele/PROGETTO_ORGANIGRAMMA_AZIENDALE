@@ -25,6 +25,8 @@ public class RemoveConnection implements Command{
         a2.config(target, mainFrame,"seleziona l'organo sottoposto");
         Rappresentation child = a2.getRappresentation();
         parent.getSubject().remove(child.getSubject());
+        child.getSubject().setParent(null);
+        child.getSubject().removeAllChildren();
         target.removeConnection(parent,child);
         if(target.numberOfConnections(parent) == 0)
             parent.setMovable(true);

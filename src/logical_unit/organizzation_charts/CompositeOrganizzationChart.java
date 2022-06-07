@@ -35,4 +35,11 @@ public class CompositeOrganizzationChart extends AbstractOrganizzationChart{
         return Collections.unmodifiableCollection(children);
     }//getChildren
 
+    @Override
+    public void removeAllChildren(){
+        for(OrganizzationChart o: children)
+            o.setParent(null);
+        children = new TreeSet<OrganizzationChart>();
+    }
+
 }//CompositeOrganizzationChart
